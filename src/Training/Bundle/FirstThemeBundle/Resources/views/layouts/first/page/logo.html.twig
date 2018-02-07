@@ -1,0 +1,12 @@
+{% block _logo_widget %}
+    {% set attr_img = attr_img|default({}) %}
+    {% set attr_img = layout_attr_defaults(attr_img, {
+        'src': asset('bundles/trainingfirsttheme/first/images/first_logo.png')
+    }) %}
+
+    {{ parent_block_widget(block) }}
+{% endblock %}
+
+{% block _logo_hint_widget %}
+    <div>First logo hint...</div>
+{% endblock %}

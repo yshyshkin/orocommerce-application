@@ -1,0 +1,4 @@
+parent: default
+label: First theme
+description: My first theme
+groups: [ commerce ]
