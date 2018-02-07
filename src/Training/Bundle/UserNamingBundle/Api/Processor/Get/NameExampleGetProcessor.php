@@ -39,5 +39,4 @@ class NameExampleGetProcessor implements ProcessorInterface
 
         $context->setResult($result);
     }
-
 }

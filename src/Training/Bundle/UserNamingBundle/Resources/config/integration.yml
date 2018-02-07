@@ -1,0 +1,18 @@
+services:
+    training_user_naming.integration.channel:
+        class: 'Training\Bundle\UserNamingBundle\Integration\NamingTypeChannel'
+        public: true
+        tags:
+            - { name: oro_integration.channel, type: naming_type }
+
+    training_user_naming.integration.transport:
+        class: 'Training\Bundle\UserNamingBundle\Integration\NamingTypeTransport'
+        public: false
+        tags:
+            - { name: oro_integration.transport, type: naming_type, channel_type: naming_type }
+
+    training_user_naming.connector.naming_type_import:
+        class: 'Training\Bundle\UserNamingBundle\Integration\Connector\NamingTypeImportConnector'
+        arguments:
+            - '@oro_entity.doctrine_helper'
+            - '@logger'
