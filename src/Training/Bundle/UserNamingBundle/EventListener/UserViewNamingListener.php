@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\RequestStack;
 
 use Doctrine\Common\Persistence\ManagerRegistry;
 
+use Oro\Bundle\SecurityBundle\SecurityFacade;
 use Oro\Bundle\UIBundle\Event\BeforeListRenderEvent;
 
 class UserViewNamingListener
@@ -16,14 +17,21 @@ class UserViewNamingListener
     /** @var RequestStack */
     private $requestStack;
 
+    /** @var SecurityFacade */
+    private $securityFacade;
+
     /**
      * @param ManagerRegistry $registry
      * @param RequestStack $requestStack
      */
-    public function __construct(ManagerRegistry $registry, RequestStack $requestStack)
-    {
+    public function __construct(
+        ManagerRegistry $registry,
+        RequestStack $requestStack,
+        SecurityFacade $securityFacade
+    ) {
         $this->registry = $registry;
         $this->requestStack = $requestStack;
+        $this->securityFacade = $securityFacade;
     }
 
     /**
@@ -31,6 +39,10 @@ class UserViewNamingListener
      */
     public function onUserView(BeforeListRenderEvent $event)
     {
+        if (!$this->securityFacade->isGranted('training_user_naming_info')) {
+            return;
+        }
+
         $userId = $this->requestStack->getCurrentRequest()->get('id');
         if (!$userId) {
             return;
