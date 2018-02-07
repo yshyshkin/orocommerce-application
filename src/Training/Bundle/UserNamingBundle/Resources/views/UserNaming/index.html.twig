@@ -3,3 +3,13 @@
 
 {% set gridName = 'training-user-naming-types-grid' %}
 {% set pageTitle = 'training.usernaming.usernamingtype.entity_plural_label'|trans %}
+
+{% block navButtons %}
+    {% include 'OroImportExportBundle:ImportExport:buttons.html.twig' with {
+        entity_class: entity_class,
+        exportProcessor: 'training_user_naming_type',
+        exportTemplateProcessor: 'training_user_naming_type',
+        importProcessor: 'training_user_naming_type_add_or_replace',
+        datagridName: gridName
+    } %}
+{% endblock %}
