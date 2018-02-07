@@ -1,4 +1,5 @@
 <?php
+// @codingStandardsIgnoreFile
 
 if (is_file(__DIR__.'/../vendor/autoload.php')) {
     require_once __DIR__ . '/../vendor/autoload.php';
@@ -19,12 +20,12 @@ use Symfony\Component\Yaml\Yaml;
  */
 class OroRequirements extends SymfonyRequirements
 {
-    const REQUIRED_PHP_VERSION  = '7.0';
+    const REQUIRED_PHP_VERSION  = '7.1';
     const REQUIRED_GD_VERSION   = '2.0';
     const REQUIRED_CURL_VERSION = '7.0';
     const REQUIRED_ICU_VERSION  = '3.8';
 
-    const EXCLUDE_REQUIREMENTS_MASK = '/5\.[0-6]/';
+    const EXCLUDE_REQUIREMENTS_MASK = '/5\.[0-6]|7\.0/';
 
     /**
      * @param string $env
@@ -67,6 +68,16 @@ class OroRequirements extends SymfonyRequirements
             'mcrypt_encrypt() should be available',
             'Install and enable the <strong>Mcrypt</strong> extension.'
         );
+
+        if (function_exists('iconv')) {
+            $this->addOroRequirement(
+                false !== @iconv('utf-8', 'ascii//TRANSLIT', 'check string'),
+                'iconv() must not return the false result on converting string "check string"',
+                'Check the configuration of the <strong>iconv</strong> extension, '
+                . 'as it may have been configured incorrectly'
+                . ' (iconv(\'utf-8\', \'ascii//TRANSLIT\', \'check string\') must not return false).'
+            );
+        }
 
         $this->addOroRequirement(
             class_exists('Locale'),

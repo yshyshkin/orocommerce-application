@@ -23,16 +23,16 @@
     }
   },
   "require": {
-    "oro/crm": "2.3.*",
-    "oro/platform-serialised-fields": "2.3.*",
-    "oro/crm-hangouts-call-bundle": "2.3.*",
-    "oro/crm-abandoned-cart": "2.3.*",
-    "oro/crm-magento-embedded-contact-us": "2.3.*",
-    "oro/crm-mail-chimp": "2.3.*",
-    "oro/crm-dotmailer": "2.3.*",
-    "oro/crm-zendesk": "2.3.*",
-    "oro/commerce": "1.3.*",
-    "oro/commerce-crm": "1.3.*"
+    "oro/crm": "2.6.*",
+    "oro/platform-serialised-fields": "2.6.*",
+    "oro/crm-hangouts-call-bundle": "2.6.*",
+    "oro/crm-abandoned-cart": "2.6.*",
+    "oro/crm-magento-embedded-contact-us": "2.6.*",
+    "oro/crm-mail-chimp": "2.6.*",
+    "oro/crm-dotmailer": "2.6.*",
+    "oro/crm-zendesk": "2.6.*",
+    "oro/commerce": "1.6.*",
+    "oro/commerce-crm": "1.6.*"
   },
   "require-dev": {
     "sensio/generator-bundle": "3.1.2",
@@ -53,8 +53,14 @@
     "friendsofphp/php-cs-fixer": "2.1.*"
   },
   "config": {
+    "platform": {
+      "php": "7.1"
+    },
     "component-dir": "web/bundles/components",
-    "bin-dir": "bin"
+    "bin-dir": "bin",
+    "fxp-asset": {
+      "enabled": false
+    }
   },
   "scripts": {
     "post-install-cmd": [
