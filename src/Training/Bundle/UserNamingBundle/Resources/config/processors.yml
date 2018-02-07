@@ -1,0 +1,24 @@
+services:
+    training_user_naming.api.get.name_example:
+        class: Training\Bundle\UserNamingBundle\Api\Processor\Get\NameExampleGetProcessor
+        arguments:
+            - '@training_user_naming.provider.user_full_name'
+        tags:
+            -
+                name: oro.api.processor
+                action: get
+                group: finalize
+                class: 'Training\Bundle\UserNamingBundle\Entity\UserNamingType'
+                priority: -25
+
+    training_user_naming.api.get_list.name_example:
+        class: Training\Bundle\UserNamingBundle\Api\Processor\GetList\NameExampleGetListProcessor
+        arguments:
+            - '@training_user_naming.provider.user_full_name'
+        tags:
+            -
+                name: oro.api.processor
+                action: get_list
+                group: finalize
+                class: 'Training\Bundle\UserNamingBundle\Entity\UserNamingType'
+                priority: -25
