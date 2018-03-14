@@ -18,7 +18,6 @@ services:
         class: 'Training\Bundle\UserNamingBundle\EventListener\UserViewNamingListener'
         arguments:
             - '@doctrine'
-            - '@request_stack'
             - '@oro_security.security_facade'
         tags:
             - { name: kernel.event_listener, event: oro_ui.scroll_data.before.userView, method: onUserView }
