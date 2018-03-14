@@ -2,8 +2,6 @@
 
 namespace Training\Bundle\UserNamingBundle\EventListener;
 
-use Symfony\Component\HttpFoundation\RequestStack;
-
 use Doctrine\Common\Persistence\ManagerRegistry;
 
 use Oro\Bundle\UIBundle\Event\BeforeListRenderEvent;
@@ -13,17 +11,12 @@ class UserViewNamingListener
     /** @var ManagerRegistry */
     private $registry;
 
-    /** @var RequestStack */
-    private $requestStack;
-
     /**
      * @param ManagerRegistry $registry
-     * @param RequestStack $requestStack
      */
-    public function __construct(ManagerRegistry $registry, RequestStack $requestStack)
+    public function __construct(ManagerRegistry $registry)
     {
         $this->registry = $registry;
-        $this->requestStack = $requestStack;
     }
 
     /**
@@ -31,7 +24,7 @@ class UserViewNamingListener
      */
     public function onUserView(BeforeListRenderEvent $event)
     {
-        $userId = $this->requestStack->getCurrentRequest()->get('id');
+        $userId = $event->getEntity() ? $event->getEntity()->getId() : null;
         if (!$userId) {
             return;
         }
