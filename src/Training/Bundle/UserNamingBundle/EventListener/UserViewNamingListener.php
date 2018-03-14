@@ -2,8 +2,6 @@
 
 namespace Training\Bundle\UserNamingBundle\EventListener;
 
-use Symfony\Component\HttpFoundation\RequestStack;
-
 use Doctrine\Common\Persistence\ManagerRegistry;
 
 use Oro\Bundle\SecurityBundle\SecurityFacade;
@@ -14,23 +12,17 @@ class UserViewNamingListener
     /** @var ManagerRegistry */
     private $registry;
 
-    /** @var RequestStack */
-    private $requestStack;
-
     /** @var SecurityFacade */
     private $securityFacade;
 
     /**
      * @param ManagerRegistry $registry
-     * @param RequestStack $requestStack
      */
     public function __construct(
         ManagerRegistry $registry,
-        RequestStack $requestStack,
         SecurityFacade $securityFacade
     ) {
         $this->registry = $registry;
-        $this->requestStack = $requestStack;
         $this->securityFacade = $securityFacade;
     }
 
@@ -43,7 +35,7 @@ class UserViewNamingListener
             return;
         }
 
-        $userId = $this->requestStack->getCurrentRequest()->get('id');
+        $userId = $event->getEntity() ? $event->getEntity()->getId() : null;
         if (!$userId) {
             return;
         }
