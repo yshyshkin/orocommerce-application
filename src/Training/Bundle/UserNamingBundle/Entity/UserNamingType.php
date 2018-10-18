@@ -39,7 +39,6 @@ class UserNamingType extends ExtendUserNamingType
      * @ConfigField(
      *      defaultValues={
      *          "importexport"={
-     *              "identity"=true,
      *              "order"=10
      *          }
      *      }
@@ -70,7 +69,6 @@ class UserNamingType extends ExtendUserNamingType
      *          }
      *      }
      * )
- *              "permissions"="ALL",
      */
     private $format;
 
