@@ -1,5 +1,4 @@
 services:
-
     # Converter
     training_user_naming.importexport.data_converter.user_naming_type:
         parent: oro_importexport.data_converter.configurable
@@ -57,3 +56,9 @@ services:
         class: 'Training\Bundle\UserNamingBundle\ImportExport\TemplateFixture\UserNamingTypeFixture'
         tags:
             - { name: oro_importexport.template_fixture }
+
+    # Configuration
+    training_user_naming.importexport.configuration_provider.training_user_naming:
+        class: Training\Bundle\UserNamingBundle\ImportExport\Configuration\UserNamingImportExportConfigurationProvider
+        tags:
+            - { name: oro_importexport.configuration, alias: training_user_naming }

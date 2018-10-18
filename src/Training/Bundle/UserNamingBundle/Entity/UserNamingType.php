@@ -39,7 +39,6 @@ class UserNamingType extends ExtendUserNamingType
      * @ConfigField(
      *      defaultValues={
      *          "importexport"={
-     *              "identity"=true,
      *              "order"=10
      *          }
      *      }
